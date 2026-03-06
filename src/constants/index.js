@@ -281,9 +281,10 @@ The focus is on sustained, structural changes, not random spikes.`,
     techUsedList: ['Python', 'FastAPI', 'PyTorch', 'Wireshark', 'Tshark', 'Next.js', 'TypeScript', 'SQLite', 'Tailwind CSS', 'Unsupervised Learning', 'Network Telemetry'],
     github: 'https://github.com/Pratishtha-sh/Network-Behavior-Intelligence',
     images: [
-      { url: '/images/spotlight1.png', caption: 'Initial data visualization and feature extraction.' },
-      { url: '/images/spotlight2.png', caption: 'Neural network architecture for anomaly detection.' },
-      { url: '/images/spotlight3.png', caption: 'Real-time monitoring dashboard.' }
+      { url: '/images/network-analyser/Screenshot 2026-01-16 163613.png', caption: '' },
+      { url: '/images/network-analyser/Screenshot 2026-01-16 155149.png', caption: '' },
+      { url: '/images/network-analyser/Screenshot 2026-01-16 163719.png', caption: '' },
+      { url: '/images/network-analyser/Screenshot 2026-01-16 163730.png', caption: '' }
     ],
     logo: '/images/project-logo1.png',
     logoStyle: {
@@ -293,17 +294,48 @@ The focus is on sustained, structural changes, not random spikes.`,
     }
   },
   {
-    id: 'ai-photo-manip',
-    title: 'Imaginify - AI Photo Management',
-    intent: 'Empowering users to transform images using generative AI technology.',
-    story: 'The goal here was to make complex AI image processing accessible through a simple, intuitive interface. I wanted to build something that felt magical yet practical for daily image edits.',
-    learned: 'I gained deep experience in integrating cloud-based AI services and managing credit-based systems. Refined my skills in handling asynchronous operations and complex state management in React.',
-    techUsedList: ['Next.js', 'Cloudinary AI', 'Clerk Auth', 'Stripe', 'Tailwind CSS'],
-    github: 'https://github.com',
-    href: 'https://www.google.com',
+    id: 'medbuddy',
+    title: 'MedBuddy',
+    subtitle: 'An AI-powered healthcare chatbot for reliable medical information',
+    intent: 'Exploring how generative AI and retrieval systems can provide trustworthy, context-aware answers to health-related questions.',
+    whatBuilt: `I built MedBuddy, an AI-powered medical assistant that answers healthcare-related questions using trusted medical knowledge rather than relying only on a language model’s internal data.
+
+The system retrieves relevant information from a curated medical knowledge base derived from The Gale Encyclopedia of Medicine, then uses a language model to generate clear, contextual responses.
+
+Instead of directly generating answers, the chatbot uses Retrieval-Augmented Generation (RAG) so responses stay grounded in verified medical information and reduce hallucinations.
+
+The goal was to create a conversational tool that explains medical topics clearly while providing quick access to reliable healthcare knowledge.`,
+    systemSteps: [
+      {
+        title: 'Knowledge Base Preparation',
+        description: 'Medical content from The Gale Encyclopedia of Medicine is processed into structured documents used as the chatbot’s knowledge source.'
+      },
+      {
+        title: 'Embedding Creation',
+        description: 'Each document is converted into vector embeddings using sentence-transformer models to capture semantic meaning.'
+      },
+      {
+        title: 'Vector Search',
+        description: 'Embeddings are stored in a FAISS vector database, enabling fast similarity search when a user asks a question.'
+      },
+      {
+        title: 'Query Retrieval',
+        description: 'The user’s question is embedded and matched against the database to retrieve the most relevant medical passages.'
+      },
+      {
+        title: 'Context-Aware Generation',
+        description: 'The retrieved context is passed to the Mistral-7B-Instruct model, which generates responses grounded in the provided medical information.'
+      },
+      {
+        title: 'Interactive Chat Interface',
+        description: 'A Streamlit-based interface allows users to ask health-related questions and receive context-aware answers in real time.'
+      }
+    ],
+    techUsedList: ['LangChain', 'Mistral-7B-Instruct', 'Hugging Face Transformers', 'FAISS Vector Store', 'Sentence Transformers', 'Streamlit', 'Retrieval-Augmented Generation (RAG)'],
+    github: 'https://github.com/Pratishtha-sh/Medbuddy',
     images: [
-      { url: '/images/spotlight4.png', caption: 'AI-driven image restoration in action.' },
-      { url: '/images/spotlight5.png', caption: 'The user dashboard for credit management.' }
+      { url: '/images/spotlight5.png', caption: '' },
+      { url: '/images/spotlight4.png', caption: '' }
     ],
     logo: '/images/project-logo5.png',
     logoStyle: {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ selectedProject, onNavigateHome }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('hero');
   const glowRef = useRef(null);
   const navRef = useRef(null);
 
@@ -11,16 +11,20 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50);
 
       // Simple intersection detection
-      const sections = ['hero', 'about', 'projects', 'certifications', 'contact'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
+      if (!selectedProject) {
+        const sections = ['hero', 'about', 'projects', 'certifications', 'contact'];
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              setActiveSection(section);
+              break;
+            }
           }
         }
+      } else {
+        setActiveSection('projects');
       }
     };
 
@@ -54,7 +58,19 @@ const Navbar = () => {
     <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div ref={glowRef} className="nav-cursor-glow" />
       <div className="nav-inner">
-        <a href="#hero" className="nav-logo">
+        <a
+          href="#hero"
+          onClick={(e) => {
+            if (selectedProject) {
+              onNavigateHome();
+              setTimeout(() => {
+                const element = document.querySelector('#hero');
+                if (element) element.scrollIntoView();
+              }, 100);
+            }
+          }}
+          className="nav-logo"
+        >
           Pratishtha<span className="text-accent-primary">.</span>
         </a>
 
@@ -64,7 +80,17 @@ const Navbar = () => {
             <li key={link.name}>
               <a
                 href={link.href}
-                className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                onClick={(e) => {
+                  if (selectedProject) {
+                    onNavigateHome();
+                    // Let react render home, then scroll to the hash
+                    setTimeout(() => {
+                      const element = document.querySelector(link.href);
+                      if (element) element.scrollIntoView();
+                    }, 100);
+                  }
+                }}
+                className={`nav-link ${(!selectedProject && activeSection === link.id) || (selectedProject && link.id === 'projects') ? 'active' : ''}`}
               >
                 {link.name}
               </a>

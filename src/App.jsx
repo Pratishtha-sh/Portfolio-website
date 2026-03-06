@@ -42,7 +42,10 @@ const App = () => {
     <>
       {isLoading && <Loader onFinished={() => setIsLoading(false)} />}
       <main className={`max-w-7xl mx-auto px-6 md:px-12 relative ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
-        <Navbar />
+        <Navbar
+          selectedProject={selectedProject}
+          onNavigateHome={() => setSelectedProject(null)}
+        />
 
         <AnimatePresence mode="wait">
           {!selectedProject ? (
