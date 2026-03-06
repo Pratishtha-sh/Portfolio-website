@@ -194,14 +194,64 @@ The goal was to create a conversational tool that explains medical topics clearl
     techUsedList: ['LangChain', 'Mistral-7B-Instruct', 'Hugging Face Transformers', 'FAISS Vector Store', 'Sentence Transformers', 'Streamlit', 'Retrieval-Augmented Generation (RAG)'],
     github: 'https://github.com/Pratishtha-sh/Medbuddy',
     images: [
-      { url: '/images/spotlight5.png', caption: '' },
-      { url: '/images/spotlight4.png', caption: '' }
+      { url: '/images/medbuddy/Screenshot 2025-06-30 202455.png', caption: '' },
+      { url: '/images/medbuddy/Screenshot 2025-06-30 203441.png', caption: '' }
     ],
     logo: '/images/project-logo5.png',
     logoStyle: {
       backgroundColor: '#1C1A43',
       border: '0.2px solid #252262',
       boxShadow: '0px 0px 60px 0px #635BFF4D',
+    }
+  },
+  {
+    id: 'customer-feedback-automation',
+    title: 'Customer Feedback Automation',
+    subtitle: 'An n8n automation workflow that analyzes and routes customer feedback to the right teams.',
+    intent: 'Exploring how workflow automation and language models can interpret user feedback and direct it to the appropriate teams in real time.',
+    whatBuilt: `I built an automated workflow using n8n that captures customer feedback from form submissions, analyzes the text using Google's Gemini AI, and intelligently routes it to the appropriate department.
+
+The system uses Gemini to classify the feedback as either a complaint, a compliment, or a feature request. Based on this classification, the workflow branches logically. Complaints and feature requests are instantly routed to dedicated Slack channels for the respective teams to action.
+
+Additionally, all interactions are logged into an Airtable database for permanent record-keeping, and the user receives an automated acknowledgment email assuring them their voice was heard.`,
+    systemSteps: [
+      {
+        title: 'Form Submission',
+        description: 'Customer feedback is submitted through a form, which automatically triggers the workflow.'
+      },
+      {
+        title: 'AI Feedback Classification',
+        description: 'An AI agent using the Gemini model analyzes the feedback and classifies it into one of three categories: complaint, compliment, or feature request.'
+      },
+      {
+        title: 'Workflow Routing',
+        description: 'A switch node routes the feedback to different branches based on the classification result.'
+      },
+      {
+        title: 'Data Storage',
+        description: 'All feedback along with user details is stored in Airtable for tracking and record management.'
+      },
+      {
+        title: 'Team Notifications',
+        description: 'Messages are automatically sent to dedicated Slack channels, where separate teams handle complaints and feature requests.'
+      },
+      {
+        title: 'Customer Acknowledgment',
+        description: 'If the feedback is classified as a complaint, an automated email response is sent to the user informing them that their issue has been received and will be resolved soon.'
+      }
+    ],
+    techUsedList: ['n8n', 'Google Gemini AI', 'Airtable', 'Slack Integration', 'Workflow Automation', 'Prompt-based Classification'],
+    github: 'https://github.com/Pratishtha-sh',
+    images: [
+      { url: '/images/n8n/Screenshot 2025-07-29 125526.png', caption: 'Automated n8n workflow for routing feedback data' },
+      { url: '/images/n8n/Screenshot 2025-07-29 125659.png', caption: 'Real-time Slack notifications for quick team action' },
+      { url: '/images/n8n/Screenshot 2025-07-29 125737.png', caption: 'Centralized customer feedback records in Airtable' }
+    ],
+    logo: '/images/project-logo3.png',
+    logoStyle: {
+      backgroundColor: '#1E2A2E',
+      border: '0.2px solid #28373C',
+      boxShadow: '0px 0px 60px 0px #3197954D',
     }
   }
 ];
@@ -253,15 +303,9 @@ const certifications = [
 
 export {
   words,
-  abilities,
   logoIconsList,
-  counterItems,
-  expCards,
   expLogos,
-  testimonials,
   socialImgs,
-  techStackIcons,
-  techStackImgs,
   navLinks,
   timelineData,
   myProjects,

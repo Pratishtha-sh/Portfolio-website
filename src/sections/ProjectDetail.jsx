@@ -59,14 +59,16 @@ const ProjectDetail = ({ project, onBack }) => {
 
                     {/* Links shifted completely left */}
                     <div className="flex flex-wrap gap-4 shrink-0 justify-start w-full">
-                        <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-3 bg-white/10 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-mono text-sm font-bold uppercase tracking-widest"
-                        >
-                            Source Code
-                        </a>
+                        {project.id !== 'customer-feedback-automation' && (
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-6 py-3 bg-white/10 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-mono text-sm font-bold uppercase tracking-widest"
+                            >
+                                Source Code
+                            </a>
+                        )}
                         {project.href && (
                             <a
                                 href={project.href}
@@ -77,6 +79,74 @@ const ProjectDetail = ({ project, onBack }) => {
                                 Check Live Site
                             </a>
                         )}
+                    </div>
+                </div>
+
+                {/* Project Snippets Section - Scaled Down Carousel with Object Contain (Moved to Top) */}
+                <div className="space-y-10 max-w-5xl mx-auto mb-16">
+                    <div className="space-y-3 text-center">
+                        <h2 className="text-lg font-mono uppercase tracking-[0.2em] text-accent-primary">Project Snippets</h2>
+                        <p className="text-text-secondary font-mono text-xl">Exploring the build through snapshots</p>
+                    </div>
+
+                    <div className="relative group mx-auto">
+                        <div className="overflow-hidden rounded-3xl h-[400px] md:h-[500px] bg-[#0A0A0A] border border-white/10 flex items-center justify-center p-4 md:p-6 shadow-2xl">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentImageIndex}
+                                    initial={{ opacity: 0, scale: 1.02 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.98 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="w-full h-full relative flex flex-col items-center justify-center"
+                                >
+                                    <img
+                                        src={project.images[currentImageIndex].url}
+                                        alt={project.images[currentImageIndex].caption}
+                                        className="max-w-full max-h-full object-contain rounded-xl shadow-lg border border-white/5"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none rounded-xl" />
+                                    {project.images[currentImageIndex].caption && (
+                                        <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center px-6">
+                                            <div className="bg-black/60 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 shadow-2xl max-w-2xl text-center">
+                                                <p className="text-white/90 font-mono text-sm md:text-base">
+                                                    {project.images[currentImageIndex].caption}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Controls */}
+                        <div className="absolute top-1/2 -translate-y-1/2 -left-6 md:-left-10 z-20">
+                            <button
+                                onClick={prevImage}
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all text-white text-2xl shadow-xl"
+                            >
+                                ←
+                            </button>
+                        </div>
+                        <div className="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-10 z-20">
+                            <button
+                                onClick={nextImage}
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all text-white text-2xl shadow-xl"
+                            >
+                                →
+                            </button>
+                        </div>
+
+                        {/* Pagination */}
+                        <div className="flex justify-center gap-4 mt-10">
+                            {project.images.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentImageIndex(idx)}
+                                    className={`w-16 h-2 transition-all duration-300 rounded-full ${idx === currentImageIndex ? 'bg-accent-primary shadow-[0_0_10px_rgba(202,62,49,0.8)]' : 'bg-white/20 hover:bg-white/40'}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -130,65 +200,6 @@ const ProjectDetail = ({ project, onBack }) => {
                             {project.learned}
                         </div>
                     )}
-                </div>
-
-                {/* Visual Proof Section - Scaled Down Carousel with Object Contain */}
-                <div className="space-y-10 max-w-5xl mx-auto">
-                    <div className="space-y-3 text-center">
-                        <h2 className="text-lg font-mono uppercase tracking-[0.2em] text-accent-primary">Visual Proof</h2>
-                        <p className="text-text-secondary font-mono text-xl">Exploring the build through snapshots</p>
-                    </div>
-
-                    <div className="relative group mx-auto">
-                        <div className="overflow-hidden rounded-3xl h-[400px] md:h-[500px] bg-[#0A0A0A] border border-white/10 flex items-center justify-center p-4 md:p-6 shadow-2xl">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={currentImageIndex}
-                                    initial={{ opacity: 0, scale: 1.02 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.98 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="w-full h-full relative flex flex-col items-center justify-center"
-                                >
-                                    <img
-                                        src={project.images[currentImageIndex].url}
-                                        alt={project.images[currentImageIndex].caption}
-                                        className="max-w-full max-h-full object-contain rounded-xl shadow-lg border border-white/5"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none rounded-xl" />
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-
-                        {/* Controls */}
-                        <div className="absolute top-1/2 -translate-y-1/2 -left-6 md:-left-10 z-20">
-                            <button
-                                onClick={prevImage}
-                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all text-white text-2xl shadow-xl"
-                            >
-                                ←
-                            </button>
-                        </div>
-                        <div className="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-10 z-20">
-                            <button
-                                onClick={nextImage}
-                                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all text-white text-2xl shadow-xl"
-                            >
-                                →
-                            </button>
-                        </div>
-
-                        {/* Pagination */}
-                        <div className="flex justify-center gap-4 mt-10">
-                            {project.images.map((_, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setCurrentImageIndex(idx)}
-                                    className={`w-16 h-2 transition-all duration-300 rounded-full ${idx === currentImageIndex ? 'bg-accent-primary shadow-[0_0_10px_rgba(202,62,49,0.8)]' : 'bg-white/20 hover:bg-white/40'}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
