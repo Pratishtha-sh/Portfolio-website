@@ -1,4 +1,4 @@
-# Pratishtha - Personal Portfolio
+ # Pratishtha - Personal Portfolio
 
 A modern, responsive, and dynamic personal portfolio built with React and Vite. The site showcases personal projects, work experience, certifications, and skills using sleek animations and interactive 3D elements.
 
@@ -20,19 +20,19 @@ A modern, responsive, and dynamic personal portfolio built with React and Vite. 
 
 1. **Clone the repository** (if not already local).
 2. **Install dependencies**:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 3. **Run the development server**:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 4. Open the localhost URL (typically `http://localhost:5173`) in your browser to view the portfolio.
 
 ## Building for Production
 
 To create a production-ready build:
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 This will output the optimized static files into the `dist` directory.
